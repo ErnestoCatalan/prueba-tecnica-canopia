@@ -1,0 +1,116 @@
+<div class="category-container">
+  <div class="header">
+    <h2>Lista de Categorías</h2>
+    <button
+      pButton
+      label="Nueva Categoría"
+      icon="pi pi-plus"
+      (click)="showDialogToAdd()"
+    ></button>
+  </div>
+
+  <p-table
+    [value]="categories"
+    [paginator]="true"
+    [rows]="10"
+    [loading]="loading"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <button
+            pButton
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success mr-2"
+            (click)="editCategory(category)"
+          ></button>
+          <button
+            pButton
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger"
+            (click)="confirmDelete(category.id)"
+          ></button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="3" class="text-center">
+          {{ loading ? 'Cargando...' : 'No se encontraron categorías' }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    header="{{ selectedCategory ? 'Editar Categoría' : 'Nueva Categoría' }}"
+    [(visible)]="displayDialog"
+    [style]="{ width: '500px' }"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <div class="p-fluid grid">
+      <div class="field col-12">
+        <label for="name">Nombre*</label>
+        <input
+          id="name"
+          type="text"
+          pInputText
+          [(ngModel)]="newCategory.name"
+          required
+          class="w-full"
+          [ngClass]="{'p-invalid': (!newCategory.name || newCategory.name.length < 3) && formTouched}"
+        />
+        <small *ngIf="(!newCategory.name || newCategory.name.length < 3) && formTouched" class="p-error">
+          Mínimo 3 caracteres requeridos
+        </small>
+      </div>
+
+      <div class="field col-12">
+        <label for="description">Descripción*</label>
+        <textarea
+          id="description"
+          pInputTextarea
+          [(ngModel)]="newCategory.description"
+          required
+          rows="3"
+          class="w-full"
+          [ngClass]="{'p-invalid': (!newCategory.description || newCategory.description.length < 10) && formTouched}"
+        ></textarea>
+        <small *ngIf="(!newCategory.description || newCategory.description.length < 10) && formTouched" class="p-error">
+          Mínimo 10 caracteres requeridos
+        </small>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        label="Cancelar"
+        icon="pi pi-times"
+        class="p-button-text"
+        (click)="onCancel()"
+      ></button>
+      <button
+        pButton
+        label="Guardar"
+        icon="pi pi-check"
+        (click)="onSave()"
+        [disabled]="!isFormValid()"
+      ></button>
+    </ng-template>
+  </p-dialog>
+
+  <p-confirmDialog></p-confirmDialog>
+</div>

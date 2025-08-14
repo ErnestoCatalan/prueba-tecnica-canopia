@@ -1,0 +1,14 @@
+<p-toast />
+<p-menubar *ngIf="showNavbar()" [model]="items">
+  <ng-template pTemplate="end">
+    <button
+      pButton
+      label="Cerrar sesión"
+      icon="pi pi-sign-out"
+      (click)="logout()"
+    ></button>
+  </ng-template>
+</p-menubar>
+<div class="container">
+  <router-outlet />
+</div>

@@ -1,0 +1,56 @@
+// src/app/auth/register/register.component.scss
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #f8f9fa;
+
+  .register-card {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 1.5rem;
+
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  .login-redirect-card {
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    padding: 1rem;
+
+    .p-button-link {
+      padding: 0;
+      color: var(--primary-color);
+
+      &:enabled:hover {
+        background: transparent;
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .p-invalid {
+    border-color: #f44336 !important;
+  }
+
+  .p-error {
+    color: #f44336;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+}
