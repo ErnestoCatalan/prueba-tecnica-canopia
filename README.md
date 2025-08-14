@@ -12,9 +12,11 @@ Aplicación completa con autenticación JWT y CRUD de productos, desarrollada co
 - MySQL 8.0+
 - Git
 
-## Instalación, clonar repositorio
+## Instalación, descargar o clonar repositorio
 git clone https://github.com/ErnestoCatalan/prueba-tecnica-canopia.git
+```bash
 cd prueba-tecnica-canopia
+```
 
 ### 1. Configuración de la Base de Datos
 
@@ -32,7 +34,7 @@ npm install
 npm run dev
 ```
 
-### 3. Configuración del Frontend
+### 3. Configuración del Frontend (en una nueva terminal)
 
 ```bash
 cd frontend
